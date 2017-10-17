@@ -23,6 +23,9 @@ app.use('/users', userRoutes);
 
 //error handling~! hooray~
 
+app.use((req, res, next) => {
+  res.sendStatus(200)
+})
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(err.status || 500).send(err.message);
