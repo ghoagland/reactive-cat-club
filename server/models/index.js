@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const db = new Sequelize('postgres://localhost:5432/catClub', {logging:false});
+const db = new Sequelize('postgres://localhost:5432/catClub', {logging: false});
 
 const Cat = db.define('cat', {
   name: {
@@ -37,7 +37,22 @@ const Cat = db.define('cat', {
     }
   }
 })
-// if(db){
-//   console.log('a database exists???')
-// }
-module.exports = { db, Cat }; // same as {db: db, Cat: Cat}
+
+const User = db.define('user', {
+  name: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    unique: true
+  },
+  email: {
+    type: Sequelize.STRING,
+    validate: {
+      isEmail: true
+    }
+  }
+})
+
+Cat.belongsTo(User);
+User.hasMany(Cat);
+
+module.exports = { db, Cat, User }; // same as {db: db, Cat: Cat}
