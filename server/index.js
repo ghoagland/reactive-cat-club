@@ -15,17 +15,18 @@ module.exports = app
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
-app.use(express.static(path.join(__dirname, './public')));
 app.use(morgan('dev'));
+
+// static middleware
+
+app.use(express.static(path.join(__dirname, '..', 'public')));
 
 app.use('/cats', catRoutes);
 app.use('/users', userRoutes);
 
+
 //error handling~! hooray~
 
-app.use((req, res, next) => {
-  res.sendStatus(200)
-})
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(err.status || 500).send(err.message);
