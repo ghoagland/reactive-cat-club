@@ -4,9 +4,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const path = require('path');
+const apiRoutes = require('./routes');
 
-const catRoutes = require('./routes/cats');
-const userRoutes = require('./routes/users');
 const db = require('./models').db;
 const app = express();
 
@@ -21,8 +20,8 @@ app.use(morgan('dev'));
 
 app.use(express.static(path.join(__dirname, '..', 'public')));
 
-app.use('/cats', catRoutes);
-app.use('/users', userRoutes);
+app.use('/api', apiRoutes);
+
 
 
 //error handling~! hooray~
