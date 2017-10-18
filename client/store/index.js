@@ -28,17 +28,49 @@ const getUser = (user) => ({ type: GET_USER, user })
 // thunk creators 
 
 export const fetchCats = () => {
-  return thunk(dispatch) {
+  return function thunk(dispatch) {
   	return axios.get('/api/cats')
   	 .then(res => res.data)
   	 .then((cats) => {
   	 	return dispatch(getCats(cats))
   	 })
+  	 .catch((err) => {console.log(err)})
   }
 }
 
 export const fetchCat = (catId) => {
-  return thunk(dispatch) {
-  	return axios.get('/api/cats/cat/')
+  return function thunk(dispatch) {
+  	return axios.get(`/api/cats/${catId}`)
+  	 .then( res => res.data)
+  	 .then((cat) => {
+  	 	return dispatch(getOneCat(cat));
+  	 })
+  	 .catch((err) => {console.log(err)})
   }
 }
+
+export const fetchUser = (userId) => {
+ return function thunk(dispatch) {
+  return axios.get(`/api/users/${userId}`)
+  .then((res) => dispatch(getUser(res.data)))
+  .catch((err) => {console.log(err)})
+ }
+}
+
+
+//reducer 
+ function reducer (state = initialState, action) {
+	switch(action.type) {
+	  case GET_ALL_CATS: 
+	     return { ...state, allCats: action.cats }
+	  case GET_ONE_CAT: 
+	     return { ...state, singleCat: action.cat }
+	   case GET_USER:
+	     return { ...state, user: action.user}
+	  default: 
+	    return state;
+	}
+}
+
+const store = createStore(reducer, applyMiddleware(createLogger, thunkMiddleware));
+export default store;
