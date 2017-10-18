@@ -1,17 +1,24 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
+import AllCats from './AllCats';
+import SingleCat from './SingleCat';
+import SingleUser from './SingleUser'
+
 
 export default class Main extends Component {
   render() {
     return (
-      <div>Hello</div>
+      <div className="we-need-a-div-here">
+      <h1>Welcome To Cat Club!</h1>
+      <Switch>
+        <Route path='/all-cats' component={AllCats} />
+        <Route path='/cat/:catId' component={SingleCat} />
+        <Route path='/user/:userId' component={SingleUser} />
+        <Route component={AllCats} />
+      </Switch>
+     </div>
     )
   }
 }
 
-// export default function Main () {
-//   return (
-//     <div>Hi</div>
-//   )
-// }
