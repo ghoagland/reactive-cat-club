@@ -99,7 +99,7 @@ const cats = [
   },
   {
     name: 'Pammy',
-    age: 76,
+    ageMonths: 76,
     breed: 'domestic short hair',
     hasShots: true,
     description: 'Do you have turkey?',
