@@ -3,7 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 
 import AllCats from './AllCats.jsx';
 import SingleCat from './SingleCat.jsx';
-import SingleUser from './SingleUser.jsx';
+//import SingleUser from './SingleUser.jsx';
  //<Route path='/cat/:catId' component={SingleCat} />
 
 export default class Main extends Component {
@@ -13,7 +13,7 @@ export default class Main extends Component {
       <h1>Welcome To Cat Club!</h1>
       <Switch>
         <Route path='/all-cats' component={AllCats} />
-  
+        <Route path="/cat/:catId" component={SingleCat} />
         <Route component={AllCats} />
       </Switch>
      </div>

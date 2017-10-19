@@ -31,7 +31,7 @@ export default class SingleCat extends Component {
          </ul>
          <p>{cat.description}</p>
        </div>
-     	) 
-      
+     	)
+
   }
 }
