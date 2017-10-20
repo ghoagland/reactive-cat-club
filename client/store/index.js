@@ -49,8 +49,8 @@ export const fetchCat = (catId) => {
 
 export const fetchUser = (userId) => {
   return function thunk(dispatch) {
-    return axios.get(`/api/users${userId}`)
-     .then ((res) => dispatch(getUSer(res.data)) )
+    return axios.get(`/api/users/${userId}`)
+     .then ((res) => dispatch(getUser(res.data)) )
      .catch((err) => { console.log(err)})
   }
 }
